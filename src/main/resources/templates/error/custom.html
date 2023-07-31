@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<h3 th:text="'Error: ' + ${status}"></h3>
+	<div th:text="'Mensaje: ' + ${message}"></div>
+	<div th:text="${timestamp}"></div>
+	<hr>
+	<ol th:if="${!trace.isEmpty()}">
+		<li th:each="t : ${trace}"><span th:text="${t}"></span></li>		
+	</ol>
+</body>
+</html>

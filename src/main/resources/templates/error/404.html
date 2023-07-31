@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Error 404</title>
+</head>
+<body>
+	
+	<h1 th:text="${status}"></h1> <!-- 404 -->
+	<div th:text="'Error: ' + ${error}"></div>	<!-- Not found -->
+	<div th:text="${timestamp}"></div> <!-- Tue Jul 25 08:59:52 CEST 2023 -->
+	<hr>	
+	<div th:text="@{Ruta: } + ${path}"></div> <!-- /home/... -->
+	<div th:text="${message}"></div>
+</body>
+</html>
