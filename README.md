@@ -1,5 +1,5 @@
 # biblioteca1
-prac evaluable2
+
 Se realizará una gestión de biblioteca en la que se manejarán como entidades principales:
 
 - Libro: incluyendo la cantidad de ejemplares del libro.
