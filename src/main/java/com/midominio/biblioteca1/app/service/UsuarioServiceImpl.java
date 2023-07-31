@@ -4,37 +4,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.midominio.tienda1.app.model.dao.ITiendaDao;
-import com.midominio.tienda1.app.model.entity.Tienda;
+import com.midominio.biblioteca1.app.model.dao.IUsuarioDao;
+import com.midominio.biblioteca1.app.model.entity.Usuario;
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
 	
 	@Autowired
-	ITiendaDao tiendaDao;
+	IUsuarioDao usuarioDao;
 
 	@Transactional(readOnly = true)
 	@Override
-	public Iterable<Tienda> findAll() {
-		return tiendaDao.findAll();
+	public Iterable<Usuario> findAll() {
+		return usuarioDao.findAll();
 	}
 
 	@Transactional
 	@Override
-	public void save(Tienda tienda) {
-		tiendaDao.save(tienda);
+	public void save(Usuario usuario) {
+		usuarioDao.save(usuario);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public Tienda findOne(Long id) {
-		return tiendaDao.findById(id).orElse(null);
+	public Usuario find(Long id) {
+		return usuarioDao.findById(id).orElse(null);
 	}
 
 	@Transactional
 	@Override
 	public void delete(Long id) {
-		tiendaDao.deleteById(id);
+		usuarioDao.deleteById(id);
 	}
 
 }
