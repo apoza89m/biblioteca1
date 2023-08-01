@@ -26,7 +26,7 @@ public class LibroController {
 	@GetMapping("/listar")
 	public String m1(Model model) {
 
-		model.addAttribute("titulo", "Libros");
+		model.addAttribute("title", "Libros");
 		model.addAttribute("libros", libroService.findAll());
 
 		return "libro/listar.html";
@@ -35,7 +35,7 @@ public class LibroController {
 	@GetMapping("/form")
 	public String crear(Map<String, Object> model) {
 
-		model.put("titulo", "Formulario de libro");
+		model.put("title", "Formulario de libro");
 		model.put("libro", new Libro());
 		return "libro/form";
 	}
@@ -44,7 +44,7 @@ public class LibroController {
 	public String guardar(@Valid Libro libro, BindingResult result, Model model) {
 		
 		if (result.hasErrors()) {
-			model.addAttribute("titulo", "Formulario de libro");
+			model.addAttribute("title", "Formulario de libro");
 			return "libro/form";
 		}
 		libroService.save(libro);
@@ -60,7 +60,7 @@ public class LibroController {
 		} else {
 			return "redirect:/libro/listar";
 		}
-		model.put("titulo", "Editar libro:");
+		model.put("title", "Editar libro:");
 		model.put("libro", libro);
 		return "libro/form";
 	}

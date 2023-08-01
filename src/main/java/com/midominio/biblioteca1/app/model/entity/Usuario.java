@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Digits.List;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -38,9 +40,11 @@ public class Usuario implements Serializable{
 	@NotNull
 	private LocalDate fechaAlta;
 	
-	@T
+	
 	//private Iterable<Libro> prestamos;
-	private String[] prestamos;
+	
+
+	private Libro[] prestamos;
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -78,11 +82,11 @@ public class Usuario implements Serializable{
 		this.fechaAlta = fechaAlta;
 	}
 
-	public String[] getPrestamos() {
+	public Libro[] getPrestamos() {
 		return prestamos;
 	}
 
-	public void setPrestamos(String[] prestamos) {
+	public void setPrestamos(Libro[] prestamos) {
 		this.prestamos = prestamos;
 	}
 

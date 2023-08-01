@@ -15,31 +15,31 @@
 
 		<table>
 			<tr>
-				<td>Referencia</td>
-				<td><input type="text" th:field="*{referencia}"/></td>
-				<td th:if="${#fields.hasErrors('referencia')}">
-					<small th:errors="*{referencia}" class="form-text text-danger"></small></td>			
+				<td>Nombre</td>
+				<td><input type="text" th:field="*{nombre}"/></td>
+				<td th:if="${#fields.hasErrors('nombre')}">
+					<small th:errors="*{nombre}" class="form-text text-danger"></small></td>			
 			</tr>
 
 			<tr>
-				<td>Descripción</td>
-				<td><input type="text" th:field="*{descripcion}"/></td>
-				<td th:if="${#fields.hasErrors('descripcion')}">
-					<small th:errors="*{descripcion}" class="form-text text-danger"></small></td>
+				<td>Email</td>
+				<td><input type="text" th:field="*{email}"/></td>
+				<td th:if="${#fields.hasErrors('email')}">
+					<small th:errors="*{email}" class="form-text text-danger"></small></td>
 			</tr>
 
 			<tr>
-				<td>Precio</td>
-				<td><input type="text" th:field="*{precio}"/></td>
-				<td th:if="${#fields.hasErrors('precio')}">
-					<small th:errors="*{precio}" class="form-text text-danger"></small></td>
+				<td>Fecha alta</td>
+				<td><input type="text" th:field="*{fechaAlta}"/></td>
+				<td th:if="${#fields.hasErrors('fechaAlta')}">
+					<small th:errors="*{fechaAlta}" class="form-text text-danger"></small></td>
 			</tr>
 			
 			<tr>
-				<td>Unidades disponibles</td>
-				<td><input type="text" th:field="*{unidadesDisponibles}" class="form-control"/></td>
-				<td th:if="${#fields.hasErrors('unidadesDisponibles')}">
-					<small th:errors="*{unidadesDisponibles}" class="form-text text-danger"></small></td>
+				<td>Prestamos</td>
+				<td><input type="text" th:field="*{x}" class="form-control"/></td>
+				<td th:if="${#fields.hasErrors('x')}">
+					<small th:errors="*{x}" class="form-text text-danger"></small></td>
 			</tr>
 
 			<tr>
