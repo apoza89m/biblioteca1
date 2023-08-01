@@ -50,11 +50,11 @@
 			</thead>
 			<tbody>
 				<tr th:each="usuario: ${usuarios}">
-					<td th:text="${articulo.id}"></td>
-					<td th:text="${articulo.referencia}"></td>
-					<td th:text="${articulo.descripcion}"></td>
-					<td th:text="${articulo.precio}"></td>
-					<td th:text="${articulo.unidadesDisponibles}"></td>
+					<td th:text="${usuario.id}"></td>
+					<td th:text="${usuario.nombre}"></td>
+					<td th:text="${usuario.email}"></td>
+					<td th:text="${usuario.fechaAlta}"></td>
+					<td th:text="${usuario. x}"></td>
 					<td>
 						<a class="btn btn-primary btn-xs" th:href="@{/usuario/form/} + ${usuario.id}">
 							Editar
