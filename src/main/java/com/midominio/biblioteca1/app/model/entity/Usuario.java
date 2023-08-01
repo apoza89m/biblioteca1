@@ -2,6 +2,7 @@ package com.midominio.biblioteca1.app.model.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Collection;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,8 +37,10 @@ public class Usuario implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull
 	private LocalDate fechaAlta;
-			
-	private Iterable<Libro> prestamos;
+	
+	@T
+	//private Iterable<Libro> prestamos;
+	private String[] prestamos;
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -59,6 +62,14 @@ public class Usuario implements Serializable{
 		this.nombre = nombre;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public LocalDate getFechaAlta() {
 		return fechaAlta;
 	}
@@ -67,16 +78,14 @@ public class Usuario implements Serializable{
 		this.fechaAlta = fechaAlta;
 	}
 
-	public Iterable<Libro> getPrestamos() {
+	public String[] getPrestamos() {
 		return prestamos;
 	}
 
-	public void setPrestamos(Iterable<Libro> prestamos) {
+	public void setPrestamos(String[] prestamos) {
 		this.prestamos = prestamos;
 	}
 
-	public Usuario() {
-		super();
-	}
+	public Usuario() {}
 	
 }

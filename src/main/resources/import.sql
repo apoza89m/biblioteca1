@@ -28,5 +28,13 @@ INSERT INTO libros (titulo, autor, genero, numero_ejemplares) VALUES ('El perfum
 INSERT INTO libros (titulo, autor, genero, numero_ejemplares) VALUES ('La historia interminable', 'Michael Ende', 'Fantasia', 20);
 INSERT INTO libros (titulo, autor, genero, numero_ejemplares) VALUES ('El señor de los anillos', 'J.R.R. Tolkien', 'Fantasia', 25);
 INSERT INTO libros (titulo, autor, genero, numero_ejemplares) VALUES ('Harry Potter y la piedra filosofal', 'J.K. Rowling', 'Fantasia', 30);
-
-INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('Mariana', 'mariana.ortega@example.com', '2013-08-24', '2013-08-24');
+INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('Mariana', 'mariana.ortega@example.com', '2013-08-24', {'1', '2', '3'});
+INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('Juan', 'juan.perez@example.com', '2014-03-25', {'4', '5', '6'});
+INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('María', 'maria.garcia@example.com', '2015-04-26', {'7', '8', '9'});
+INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('Pedro', 'pedro.diaz@example.com', '2016-05-27', {'10', '11', '12'});
+INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('Susana', 'susana.romero@example.com', '2017-06-28', {'13', '14', '15'});
+INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('José', 'jose.lopez@example.com', '2018-07-29', {'16', '17', '18'});
+INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('Andrés', 'andres.gonzalez@example.com', '2019-08-30', {'19', '20', '21'});
+INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('Laura', 'laura.sanchez@example.com', '2020-09-30', {'22', '23', '24'});
+INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('David', 'david.martinez@example.com', '2021-10-31', {'25', '26', '27'});
+INSERT INTO usuarios (nombre, email, fecha_alta, prestamos) VALUES ('Isabel', 'isabel.castro@example.com', '2022-11-30', {'28', '29', '30'});

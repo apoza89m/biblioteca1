@@ -24,9 +24,9 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/articulo/listar}">Lista articulos</a></li>
+						aria-current="page" th:href="@{/libro/listar}">Lista libros</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/articulo/form}">Nuevo articulo</a></li>		
+						aria-current="page" th:href="@{/libro/form}">Nuevo libro</a></li>		
 				</ul>
 			</div>
 		</div>
@@ -49,19 +49,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="articulo: ${articulos}">
+				<tr th:each="libro: ${libros}">
 					<td th:text="${articulo.id}"></td>
 					<td th:text="${articulo.referencia}"></td>
 					<td th:text="${articulo.descripcion}"></td>
 					<td th:text="${articulo.precio}"></td>
 					<td th:text="${articulo.unidadesDisponibles}"></td>
 					<td>
-						<a class="btn btn-primary btn-xs" th:href="@{/articulo/form/} + ${articulo.id}">
+						<a class="btn btn-primary btn-xs" th:href="@{/libro/form/} + ${libro.id}">
 							Editar
 						</a>
 					</td>
 					<td>
-						<a class="btn btn-primary btn-xs" th:href="@{/articulo/eliminar/} + ${articulo.id}">
+						<a class="btn btn-primary btn-xs" th:href="@{/libro/eliminar/} + ${libro.id}">
 							Eliminar
 						</a>
 					</td>

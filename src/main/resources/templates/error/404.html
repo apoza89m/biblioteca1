@@ -7,7 +7,7 @@
 <body>
 	
 	<h1 th:text="${status}"></h1> <!-- 404 -->
-	<div th:text="'Error: ' + ${error}"></div>	<!-- Not found -->
+	<div th:text="'La pagina no existe: ' + ${error}"></div>	<!-- Not found -->
 	<div th:text="${timestamp}"></div> <!-- Tue Jul 25 08:59:52 CEST 2023 -->
 	<hr>	
 	<div th:text="@{Ruta: } + ${path}"></div> <!-- /home/... -->

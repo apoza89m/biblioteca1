@@ -79,8 +79,6 @@ public class Libro implements Serializable{
 		this.numEjemplares = numEjemplares;
 	}
 
-	public Libro() {
-		super();
-	}
+	public Libro() {}
 	
 }
