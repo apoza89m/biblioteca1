@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.midominio.biblioteca1.app.model.entity.Libro;
+import com.midominio.biblioteca1.app.entity.Libro;
 import com.midominio.biblioteca1.app.service.ILibroService;
 
 import jakarta.validation.Valid;
@@ -31,7 +32,13 @@ public class LibroController {
 
 		return "libro/listar.html";
 	}
-
+	
+	@ResponseBody
+	@GetMapping("/rest/listar")
+	public Iterable<Libro> listarAllRest()	{
+		return libroService.findAll();
+	}
+	
 	@GetMapping("/form")
 	public String crear(Map<String, Object> model) {
 

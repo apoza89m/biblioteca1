@@ -1,4 +1,4 @@
-package com.midominio.biblioteca1.app.model.entity;
+package com.midominio.biblioteca1.app.entity;
 
 import java.io.Serializable;
 
