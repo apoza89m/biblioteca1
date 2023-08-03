@@ -1,5 +1,7 @@
 package com.midominio.biblioteca1.app.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,6 +54,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		
 		if (usuario.getId() == null) return;
 		usuarioRepository.save(usuario);
+	}
+
+	@Override
+	public Usuario dameUsuarioEmail(String email) {
+		return usuarioRepository.findByEmail(email);
 	}
 
 }

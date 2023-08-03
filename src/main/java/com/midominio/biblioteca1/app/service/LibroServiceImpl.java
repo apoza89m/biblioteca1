@@ -1,6 +1,12 @@
 package com.midominio.biblioteca1.app.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +58,20 @@ public class LibroServiceImpl implements ILibroService {
 		if (libro.getId() == null) return;
 		libroRepository.save(libro);
 	}
+	
+	@Override
+	public List<Libro> dameLibrosAutor(String autor) {
+		return libroRepository.findByAutor(autor);
+	}
 
+	@Override
+	public List<Libro> dameLibrosGenero(String genero) {
+		return libroRepository.findByGenero(genero);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Libro> listar(Pageable pageable) {
+		return libroRepository.findAll(pageable);
+	}
 }

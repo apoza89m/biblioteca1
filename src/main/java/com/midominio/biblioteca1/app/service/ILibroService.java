@@ -1,5 +1,10 @@
 package com.midominio.biblioteca1.app.service;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.midominio.biblioteca1.app.entity.Libro;
 
 public interface ILibroService {
@@ -11,4 +16,11 @@ public interface ILibroService {
 	
 	void insert(Libro libro);
 	void update(Libro libro);
+	
+	List<Libro> dameLibrosAutor(String s);
+	List<Libro> dameLibrosGenero(String s);
+	
+	// Ojo importar de Spring Data Domain
+	Page<Libro> listar(Pageable pageable);
+
 }

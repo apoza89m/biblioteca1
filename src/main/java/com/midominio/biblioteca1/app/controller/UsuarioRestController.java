@@ -38,11 +38,11 @@ public class UsuarioRestController {
 	
 		@PostMapping("/usuario")
 		public void crearUsuarioRest(@RequestBody Usuario usuario) {
-		    usuarioService.save(usuario);
+		    usuarioService.insert(usuario);
 		}
 		
 		@PutMapping("/usuario")
 		public void actualizarUsuarioRest(@RequestBody Usuario usuario) {
-		    usuarioService.save(usuario);
+		    usuarioService.update(usuario);
 		}
 }

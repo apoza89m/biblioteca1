@@ -3,6 +3,9 @@ package com.midominio.biblioteca1.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,10 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.midominio.biblioteca1.app.entity.Libro;
 import com.midominio.biblioteca1.app.service.ILibroService;
+import com.midominio.biblioteca1.app.utils.PageRender;
 
 import jakarta.validation.Valid;
 
@@ -33,6 +39,33 @@ public class LibroController {
 		return "libro/listar.html";
 	}
 	
+	@GetMapping("/listar-paginado")
+	public String listar(@RequestParam(defaultValue = "0") int page, Model model) {
+		Pageable pageRequest = PageRequest.of(page, 5);
+		Page<Libro> libros = libroService.listar(pageRequest);
+		PageRender<Libro> pageRender = new PageRender<>("/libro/listar", libros); 
+		model.addAttribute("titulo", "Listado de libros");
+		model.addAttribute("libros", libros);
+		model.addAttribute("page", pageRender);
+		return "libro/listar";
+	}
+	
+	@GetMapping("/listar/genero/{genero}")
+	public String listaFiltradaGeneroHandler(@PathVariable("genero") String genero,Model model) {
+	
+		model.addAttribute("libros", libroService.dameLibrosGenero(genero));
+		model.addAttribute("volverALista",true);
+		return "libro/listar.html";
+	}
+	
+	@GetMapping("/listar/autor/{autor}")
+	public String listaFiltradaAutorHandler(@PathVariable("autor") String autor,Model model) {
+	
+		model.addAttribute("libros", libroService.dameLibrosAutor(autor));
+		model.addAttribute("volverALista",true);
+		return "libro/listar.html";
+	}
+	
 	@ResponseBody
 	@GetMapping("/rest/listar")
 	public Iterable<Libro> listarAllRest()	{
@@ -48,13 +81,14 @@ public class LibroController {
 	}
 
 	@PostMapping("/form")
-	public String guardar(@Valid Libro libro, BindingResult result, Model model) {
+	public String guardar(@Valid Libro libro, BindingResult result, RedirectAttributes flash, Model model) {
 		
 		if (result.hasErrors()) {
 			model.addAttribute("title", "Formulario de libro");
 			return "libro/form";
 		}
 		libroService.save(libro);
+		flash.addFlashAttribute("success", "Libro guardado con éxito");
 		return "redirect:listar";
 	}
 
@@ -73,10 +107,11 @@ public class LibroController {
 	}
 
 	@GetMapping("/eliminar/{id}")
-	public String eliminar(@PathVariable("id") Long id) {
+	public String eliminar(@PathVariable("id") Long id, RedirectAttributes flash) {
 		
 		if (id > 0)
 			libroService.delete(id);
+		flash.addFlashAttribute("warningDelete", "Libro borrado con éxito");
 		return "redirect:/libro/listar";
 	}
 

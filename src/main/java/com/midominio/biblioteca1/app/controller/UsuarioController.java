@@ -3,6 +3,7 @@ package com.midominio.biblioteca1.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.midominio.biblioteca1.app.entity.Usuario;
 import com.midominio.biblioteca1.app.service.IUsuarioService;
@@ -24,7 +27,7 @@ public class UsuarioController {
 	private IUsuarioService usuarioService;
 
 	@GetMapping("/listar")
-	public String m1(Model model) {
+	public String listar(Model model) {
 
 		model.addAttribute("titulo", "Usuarios");
 		model.addAttribute("usuarios", usuarioService.findAll());
@@ -32,6 +35,21 @@ public class UsuarioController {
 		return "usuario/listar.html";
 	}
 
+	@GetMapping("/ver/{id}")
+	public String verUsusario(@PathVariable("id") Long id,
+			RedirectAttributes flash,
+			Model model) { 
+		Usuario user = usuarioService.find(id);
+		if (user==null) {
+			flash.addFlashAttribute("error", "Email no registrado");	
+		}
+		model.addAttribute("titulo", "Usuario");
+		model.addAttribute("usuario", user);
+		model.addAttribute("volverALista",true);
+
+		return "usuario/ver.html";
+	}
+		
 	@GetMapping("/form")
 	public String crear(Map<String, Object> model) {
 
@@ -41,13 +59,14 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/form")
-	public String guardar(@Valid Usuario usuario, BindingResult result, Model model) { 
+	public String guardar(@Valid Usuario usuario, BindingResult result, RedirectAttributes flash, Model model) { 
 		
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario de usuario");
 			return "usuario/form";
 		}
 		usuarioService.save(usuario);
+		flash.addFlashAttribute("success", "Usuario guardado con éxito");
 		return "redirect:listar";
 	}
 
@@ -66,9 +85,10 @@ public class UsuarioController {
 	}
 
 	@GetMapping("/eliminar/{id}")
-	public String eliminar(@PathVariable("id") Long id) {
+	public String eliminar(@PathVariable("id") Long id, RedirectAttributes flash) {
 		if (id > 0)
 			usuarioService.delete(id);
+		flash.addFlashAttribute("warningDelete", "Usuario borrado con éxito");
 		return "redirect:/usuario/listar";
 	}
 

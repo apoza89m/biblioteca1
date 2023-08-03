@@ -1,5 +1,7 @@
 package com.midominio.biblioteca1.app.service;
 
+import java.util.List;
+
 import com.midominio.biblioteca1.app.entity.Usuario;
 
 public interface IUsuarioService {
@@ -10,5 +12,7 @@ public interface IUsuarioService {
 	void delete(Long id);
 	
 	void insert(Usuario usuario);
-	void update(Usuario usuario);
+	void update(Usuario usuario);	
+	
+	Usuario dameUsuarioEmail(String email);
 }

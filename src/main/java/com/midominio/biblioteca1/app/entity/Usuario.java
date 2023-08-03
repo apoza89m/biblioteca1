@@ -2,12 +2,16 @@ package com.midominio.biblioteca1.app.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -21,8 +25,8 @@ public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@GeneratedValue
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long id;
 	
 	@NotEmpty
@@ -35,14 +39,12 @@ public class Usuario implements Serializable{
 	@Column(name = "fecha_alta")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull
-	private LocalDate fechaAlta;
+	private LocalDate fechaAlta;	
 	
-	
-	//private Iterable<Libro> prestamos;
-	
+	//@ElementCollection()
+	//@CollectionTable(name = "prestamos")
+	//private Iterable<Libro> prestamos = new ArrayList<Libro>();
 
-	private Libro[] prestamos;
-	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -77,14 +79,6 @@ public class Usuario implements Serializable{
 
 	public void setFechaAlta(LocalDate fechaAlta) {
 		this.fechaAlta = fechaAlta;
-	}
-
-	public Libro[] getPrestamos() {
-		return prestamos;
-	}
-
-	public void setPrestamos(Libro[] prestamos) {
-		this.prestamos = prestamos;
 	}
 
 	public Usuario() {}

@@ -25,17 +25,6 @@
 
 	<!-- Todos los class son de bootstrap -->
 	<div class="container">
-			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 200ms"
-			 	th:if="${success != null}" th:text="${success}"></div>
-			 	
-			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 200ms"
-			 	th:if="${error != null}" th:text="${error}"></div>
-			
-			<div class="alert alert-success delayed-div animate__animated animate__fadeIn" style="animation-delay: 100ms"
-			 	th:if="${warningDelete != null}" th:text="${warningDelete}"></div>
-			 	
-			<div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
-			
 		<h1 class="text-primary" th:text="${titulo}"></h1>
 
 		<table class="table table-striped">
@@ -54,16 +43,8 @@
 				<tr th:each="libro: ${libros}">
 					<td th:text="${libro.id}"></td>
 					<td th:text="${libro.titulo}"></td>
-					<td>
-					<a th:href="@{/libro/listar/autor/} + ${libro.autor}">						
-						<span th:text="${libro.autor}"></span>
-					</a>
-					</td>
-					<td>
-					<a th:href="@{/libro/listar/genero/} + ${libro.genero}">						
-						<span th:text="${libro.genero}"></span>
-					</a>
-					</td>
+					<td th:text="${libro.autor}"></td>
+					<td th:text="${libro.genero}"></td>
 					<td th:text="${libro.numEjemplares}"></td>
 					<td>
 						<a class="btn btn-primary btn-xs" th:href="@{/libro/form/} + ${libro.id}">
@@ -78,10 +59,12 @@
 				</tr>
 			</tbody>
 		</table>
-		<nav th:replace="/libro/pag :: paginator"></nav>
 	</div>
-	<div align ="center" th:if="${volverALista}"><a class="btn btn-outline-info" th:href="@{/libro/listar}">Volver a lista completa</a></div>
-	<br>
-	<footeer th:replace="~{home/plantilla :: foot}"></footeer>
+
+	<!-- Script de bootstrap enlazado vía CDN-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+		crossorigin="anonymous"></script>
 </body>
 </html>

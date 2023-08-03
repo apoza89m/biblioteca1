@@ -17,12 +17,15 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" th:href="@{/usuario/listar}">Lista usuarios</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/usuario/form}">Nuevo usuario</a></li>			
+						aria-current="page" th:href="@{/usuario/form}">Nuevo usuario</a></li>
+					<li class="nav-item">
+          				<a class="nav-link disabled" aria-disabled="true"></a>
+        			</li>			
 				</ul>				
 			</div>
 			<div align = "right">
 				<form class="d-flex" role="search" method="post" >
-					<span>@</span> <!-- @RequestParam("email") String email -->
+					<span>@</span>
 			        <input class="form-control me-2" type="email" placeholder="email" id="email" name="email">>
 			        <button class="btn btn-outline-success" type="submit">Buscar</button>
 				</form>
@@ -33,7 +36,7 @@
 	<!-- Todos los class son de bootstrap -->
 	
 	<div class="container">
-			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 200ms"
+			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 300ms"
 			 	th:if="${success != null}" th:text="${success}"></div>
 			
 			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 200ms"
@@ -60,7 +63,6 @@
 			</thead>
 
 			<tbody>
-				<tr th:each="usuario: ${usuarios}">
 					<td th:text="${usuario.id}"></td>
 					<td th:text="${usuario.nombre}"></td>
 					<td th:text="${usuario.email}"></td>

@@ -38,11 +38,11 @@ public class LibroRestController {
 	
 		@PostMapping("/libro")
 		public void crearLibroRest(@RequestBody Libro libro) {
-		    libroService.save(libro);
+		    libroService.insert(libro);
 		}
 		
 		@PutMapping("/libro")
 		public void actualizarLibroRest(@RequestBody Libro libro) {
-		    libroService.save(libro);
+		    libroService.update(libro);
 		}
 }

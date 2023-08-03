@@ -5,6 +5,7 @@ import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
@@ -16,13 +17,13 @@ import jakarta.validation.constraints.Size;
 public class Libro implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-
-	@GeneratedValue
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotEmpty
-	@Size(min = 4, max = 12)
+	@Size(min = 4, max = 44)
 	private String titulo;
 	
 	@NotEmpty
