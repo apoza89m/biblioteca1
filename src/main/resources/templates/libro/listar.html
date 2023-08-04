@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head th:replace="~{home/plantilla :: head}"></head>
-<body>
-	<!-- Navigation bar bootstrap -->
+<body>	<!-- Navigation bar bootstrap -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="http://localhost:8080/home"><b>Biblioteca</b></a>
@@ -28,8 +27,7 @@
 			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 200ms"
 			 	th:if="${success != null}" th:text="${success}"></div>
 			 	
-			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 200ms"
-			 	th:if="${error != null}" th:text="${error}"></div>
+			<div class=class="alert alert-info" th:if="${error != null}" th:text="${error}"></div>
 			
 			<div class="alert alert-success delayed-div animate__animated animate__fadeIn" style="animation-delay: 100ms"
 			 	th:if="${warningDelete != null}" th:text="${warningDelete}"></div>
@@ -54,11 +52,7 @@
 				<tr th:each="libro: ${libros}">
 					<td th:text="${libro.id}"></td>
 					<td th:text="${libro.titulo}"></td>
-					<td>
-					<a th:href="@{/libro/listar/autor/} + ${libro.autor}">						
-						<span th:text="${libro.autor}"></span>
-					</a>
-					</td>
+					<td th:text="${libro.autor}"></td>
 					<td>
 					<a th:href="@{/libro/listar/genero/} + ${libro.genero}">						
 						<span th:text="${libro.genero}"></span>
@@ -77,11 +71,12 @@
 					</td>
 				</tr>
 			</tbody>
-		</table>
+		</table>		
+	</div>
+	<div align = "center">
 		<nav th:replace="/libro/pag :: paginator"></nav>
 	</div>
 	<div align ="center" th:if="${volverALista}"><a class="btn btn-outline-info" th:href="@{/libro/listar}">Volver a lista completa</a></div>
-	<br>
 	<footeer th:replace="~{home/plantilla :: foot}"></footeer>
 </body>
 </html>

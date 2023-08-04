@@ -10,7 +10,6 @@ import com.midominio.biblioteca1.app.entity.Libro;
 
 public interface ILibroRepository extends PagingAndSortingRepository<Libro, Long>, CrudRepository<Libro, Long>{
 	
-		List<Libro> findByAutor(@Param("autor") String autor);
 	    List<Libro> findByGenero(@Param("genero") String genero);
 	/*    
 	// Ejemplo 1: Obtener artículos por marca

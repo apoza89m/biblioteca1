@@ -58,11 +58,6 @@ public class LibroServiceImpl implements ILibroService {
 		if (libro.getId() == null) return;
 		libroRepository.save(libro);
 	}
-	
-	@Override
-	public List<Libro> dameLibrosAutor(String autor) {
-		return libroRepository.findByAutor(autor);
-	}
 
 	@Override
 	public List<Libro> dameLibrosGenero(String genero) {

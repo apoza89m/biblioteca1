@@ -17,8 +17,7 @@ public interface ILibroService {
 	void insert(Libro libro);
 	void update(Libro libro);
 	
-	List<Libro> dameLibrosAutor(String s);
-	List<Libro> dameLibrosGenero(String s);
+	List<Libro> dameLibrosGenero(String genero);
 	
 	// Ojo importar de Spring Data Domain
 	Page<Libro> listar(Pageable pageable);

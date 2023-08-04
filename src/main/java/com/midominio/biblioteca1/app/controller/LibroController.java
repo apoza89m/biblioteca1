@@ -29,17 +29,8 @@ public class LibroController {
 
 	@Autowired
 	private ILibroService libroService;
-
-	@GetMapping("/listar")
-	public String m1(Model model) {
-
-		model.addAttribute("title", "Libros");
-		model.addAttribute("libros", libroService.findAll());
-
-		return "libro/listar.html";
-	}
 	
-	@GetMapping("/listar-paginado")
+	@GetMapping("/listar")
 	public String listar(@RequestParam(defaultValue = "0") int page, Model model) {
 		Pageable pageRequest = PageRequest.of(page, 5);
 		Page<Libro> libros = libroService.listar(pageRequest);
@@ -55,15 +46,7 @@ public class LibroController {
 	
 		model.addAttribute("libros", libroService.dameLibrosGenero(genero));
 		model.addAttribute("volverALista",true);
-		return "libro/listar.html";
-	}
-	
-	@GetMapping("/listar/autor/{autor}")
-	public String listaFiltradaAutorHandler(@PathVariable("autor") String autor,Model model) {
-	
-		model.addAttribute("libros", libroService.dameLibrosAutor(autor));
-		model.addAttribute("volverALista",true);
-		return "libro/listar.html";
+		return "libro/listar";
 	}
 	
 	@ResponseBody
