@@ -21,5 +21,6 @@ public interface ILibroService {
 	
 	// Ojo importar de Spring Data Domain
 	Page<Libro> listar(Pageable pageable);
+	Page<Libro> pageFiltro(String genero, Pageable page);
 
 }

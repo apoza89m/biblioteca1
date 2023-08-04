@@ -1,5 +1,8 @@
 package com.midominio.biblioteca1.app.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.midominio.biblioteca1.app.entity.Usuario;
@@ -34,15 +38,28 @@ public class UsuarioController {
 
 		return "usuario/listar.html";
 	}
+	@PostMapping("/listar")
+	public String listarK(@RequestParam("email") String email,
+			RedirectAttributes flash,
+			Model model) {
+		
+		Usuario user = usuarioService.dameUsuarioEmail(email);
+		model.addAttribute("titulo", "Usuarios");
+		model.addAttribute("usuarios", user);
+		String s ="";
+		if(user==null) {
+			s = "redirect:/usuario/listar";
+			flash.addFlashAttribute("error", "Usuario no registrado");
+		}
+			else   s = "redirect:/usuario/ver/"+user.getId();		
+		return s;
+	}
 
 	@GetMapping("/ver/{id}")
 	public String verUsusario(@PathVariable("id") Long id,
 			RedirectAttributes flash,
 			Model model) { 
-		Usuario user = usuarioService.find(id);
-		if (user==null) {
-			flash.addFlashAttribute("error", "Email no registrado");	
-		}
+		Usuario user = usuarioService.find(id);		
 		model.addAttribute("titulo", "Usuario");
 		model.addAttribute("usuario", user);
 		model.addAttribute("volverALista",true);
@@ -59,11 +76,29 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/form")
-	public String guardar(@Valid Usuario usuario, BindingResult result, RedirectAttributes flash, Model model) { 
+	public String guardar(@Valid Usuario usuario,
+			BindingResult result,
+			@RequestParam("file") MultipartFile foto,
+			RedirectAttributes flash,
+			Model model) { 
 		
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario de usuario");
 			return "usuario/form";
+		}
+		if (!foto.isEmpty()) {
+			Path directorioRecursos = Paths.get("src/main/resources/static/upload");
+			String rootPath = directorioRecursos.toFile().getAbsolutePath();
+			//String rootPath = "/opt/uploads";
+			try {
+				byte[] bytes = foto.getBytes();
+				Path rutaCompleta = Paths.get(rootPath + "/" + foto.getOriginalFilename());
+				Files.write(rutaCompleta, bytes);
+				flash.addFlashAttribute("info", "Subido correctamente " + foto.getOriginalFilename());
+				usuario.setFoto(foto.getOriginalFilename());
+			} catch (Exception e) {
+
+			}
 		}
 		usuarioService.save(usuario);
 		flash.addFlashAttribute("success", "Usuario guardado con éxito");

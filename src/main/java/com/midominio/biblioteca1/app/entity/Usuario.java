@@ -41,6 +41,10 @@ public class Usuario implements Serializable{
 	@NotNull
 	private LocalDate fechaAlta;	
 	
+	private String foto;
+	public String getFoto(){return foto;}
+	public void setFoto(String foto){this.foto=foto;}
+	
 	//@ElementCollection()
 	//@CollectionTable(name = "prestamos")
 	//private Iterable<Libro> prestamos = new ArrayList<Libro>();

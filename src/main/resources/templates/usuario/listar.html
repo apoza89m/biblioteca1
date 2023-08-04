@@ -33,13 +33,13 @@
 	<!-- Todos los class son de bootstrap -->
 	
 	<div class="container">
-			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 200ms"
+			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 300ms"
 			 	th:if="${success != null}" th:text="${success}"></div>
 			
-			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 200ms"
+			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 300ms"
 			 	th:if="${error != null}" th:text="${error}"></div>
 			
-			<div class="alert alert-success delayed-div animate__animated animate__fadeIn" style="animation-delay: 100ms" 
+			<div class="alert alert-success delayed-div animate__animated animate__fadeIn" style="animation-delay: 300ms" 
 				th:if="${warningDelete != null}" th:text="${warningDelete}"></div>
 				
 			<div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
@@ -58,7 +58,6 @@
 					<th>Prestamos</th>	
 				</tr>
 			</thead>
-
 			<tbody>
 				<tr th:each="usuario: ${usuarios}">
 					<td th:text="${usuario.id}"></td>
@@ -84,7 +83,6 @@
 			</tbody>
 		</table>
 	</div>
-	<div align ="center" th:if="${volverALista}"><a class="btn btn-outline-info" th:href="@{/usuario/listar}">Volver a lista completa</a></div>
 	<footeer th:replace="~{home/plantilla :: foot}"></footeer>
 </body>
 </html>

@@ -31,7 +31,8 @@ public class LibroController {
 	private ILibroService libroService;
 	
 	@GetMapping("/listar")
-	public String listar(@RequestParam(defaultValue = "0") int page, Model model) {
+	public String listar(@RequestParam(defaultValue = "0") int page,
+			Model model) {
 		Pageable pageRequest = PageRequest.of(page, 5);
 		Page<Libro> libros = libroService.listar(pageRequest);
 		PageRender<Libro> pageRender = new PageRender<>("/libro/listar", libros); 
@@ -41,14 +42,19 @@ public class LibroController {
 		return "libro/listar";
 	}
 	
-	@GetMapping("/listar/genero/{genero}")
-	public String listaFiltradaGeneroHandler(@PathVariable("genero") String genero,Model model) {
-	
-		model.addAttribute("libros", libroService.dameLibrosGenero(genero));
-		model.addAttribute("volverALista",true);
+	@GetMapping("/listar/{genero}")
+	public String listarFiltrado(@RequestParam(defaultValue = "0") int page,
+			@PathVariable String genero,
+			Model model) {
+		Pageable pageRequest = PageRequest.of(page, 5);
+		Page<Libro> libros = libroService.pageFiltro(genero, pageRequest);
+		PageRender<Libro> pageRender = new PageRender<>("/libro/listar/"+genero, libros);		
+		model.addAttribute("titulo", "Listado de libros");
+		model.addAttribute("libros", libros);
+		model.addAttribute("page", pageRender);
 		return "libro/listar";
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/rest/listar")
 	public Iterable<Libro> listarAllRest()	{

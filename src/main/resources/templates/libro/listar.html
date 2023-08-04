@@ -54,7 +54,7 @@
 					<td th:text="${libro.titulo}"></td>
 					<td th:text="${libro.autor}"></td>
 					<td>
-					<a th:href="@{/libro/listar/genero/} + ${libro.genero}">						
+					<a th:href="@{/libro/listar/} + ${libro.genero}">						
 						<span th:text="${libro.genero}"></span>
 					</a>
 					</td>
@@ -73,10 +73,9 @@
 			</tbody>
 		</table>		
 	</div>
-	<div align = "center">
+	<div class="pagination center">
 		<nav th:replace="/libro/pag :: paginator"></nav>
 	</div>
-	<div align ="center" th:if="${volverALista}"><a class="btn btn-outline-info" th:href="@{/libro/listar}">Volver a lista completa</a></div>
 	<footeer th:replace="~{home/plantilla :: foot}"></footeer>
 </body>
 </html>

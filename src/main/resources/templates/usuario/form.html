@@ -3,7 +3,7 @@
 <head th:replace="~{home/plantilla :: head}"></head>
 <body>
 	<h1 th:text="${titulo}"></h1>
-	<form th:action="@{/usuario/form}" th:object="${usuario}" method="post">
+	<form th:action="@{/usuario/form}" th:object="${usuario}" method="post" enctype="multipart/form-data">
 
 		<table>
 			<tr>
@@ -26,14 +26,18 @@
 				<td th:if="${#fields.hasErrors('fechaAlta')}">
 					<small th:errors="*{fechaAlta}" class="form-text text-danger"></small></td>
 			</tr>
-
+			
+			<tr>
+				<td>Foto</td>
+				<td><input type="file" name="file" class="form-control" /></td>
+			</tr>
+			
 			<tr>
 				<td></td>
 				<td><input type="submit" value = "Guardar" class="btn btn-primary"/></td>
 			</tr>			
 		</table>
-
-	<input type="hidden" th:field="*{id}"/>
+		<input type="hidden" th:field="*{id}"/>
 	</form>
 	<footeer th:replace="~{home/plantilla :: foot}"></footeer>
 </body>

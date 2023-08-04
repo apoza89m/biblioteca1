@@ -2,92 +2,24 @@
 <html xmlns:th="http://thymeleaf.org">
 <head th:replace="~{home/plantilla :: head}"></head>
 <body>
-	<!-- Navigation bar bootstrap -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="http://localhost:8080/home"><b>Biblioteca</b></a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/usuario/listar}">Lista usuarios</a></li>
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/usuario/form}">Nuevo usuario</a></li>
-					<li class="nav-item">
-          				<a class="nav-link disabled" aria-disabled="true"></a>
-        			</li>			
-				</ul>				
-			</div>
-			<div align = "right">
-				<form class="d-flex" role="search" method="post" >
-					<span>@</span>
-			        <input class="form-control me-2" type="email" placeholder="email" id="email" name="email">>
-			        <button class="btn btn-outline-success" type="submit">Buscar</button>
-				</form>
+	<div class="container py-4">
+		<div class="card bf-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<img class="img-thumbnail rounded float-left" style="max-width: 25%"
+					th:src="@{'/upload/' + ${usuario.foto}}" th:alt="${usuario.foto}" />
+				<ul class="list-group">
+					<li class="list-group-item" th:text="${usuario.id}">
+					<li class="list-group-item" th:text="${usuario.nombre}"></li>
+					<li class="list-group-item" th:text="${usuario.email}"></li>
+					<li class="list-group-item" th:text="${usuario.fechaAlta}"></li>				
+				</ul>
 			</div>
 		</div>
-	</nav>
-
-	<!-- Todos los class son de bootstrap -->
-	
-	<div class="container">
-			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 300ms"
-			 	th:if="${success != null}" th:text="${success}"></div>
-			
-			<div class="alert alert-success delayed-div animate__animated animate__fadeOut" style="animation-delay: 200ms"
-			 	th:if="${error != null}" th:text="${error}"></div>
-			
-			<div class="alert alert-success delayed-div animate__animated animate__fadeIn" style="animation-delay: 100ms" 
-				th:if="${warningDelete != null}" th:text="${warningDelete}"></div>
-				
-			<div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
-			
-		<h1 class="text-primary" th:text="${titulo}"></h1>
-			
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Nombre</th>
-					<th>Email</th>
-					<th>Fecha de alta</th>
-					<th></th>
-					<th></th>
-					<th>Prestamos</th>	
-				</tr>
-			</thead>
-
-			<tbody>
-					<td th:text="${usuario.id}"></td>
-					<td th:text="${usuario.nombre}"></td>
-					<td th:text="${usuario.email}"></td>
-					<td th:text="${usuario.fechaAlta}"></td>
-					<td>
-						<a class="btn btn-primary btn-xs" th:href="@{/usuario/form/} + ${usuario.id}">
-							Editar
-						</a>
-					</td>
-					<td>
-						<a class="btn btn-secondary" th:href="@{/usuario/eliminar/} + ${usuario.id}">
-							Eliminar
-						</a>
-					</td>
-					<td>
-						<a class="btn btn-success" th:href="@{/prestamo/form/} + ${usuario.id}">
-							\*/
-						</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
 	</div>
-	<div align ="center" th:if="${volverALista}"><a class="btn btn-outline-info" th:href="@{/usuario/listar}">Volver a lista completa</a></div>
-	<br>
-	<footeer th:replace="~{home/plantilla :: foot}"></footeer>
+	<div align ="center">
+		<a class="btn btn-outline-primary" th:href="@{/usuario/listar}">Volver a lista</a>
+	</div>
+	<footer th:replace="~{home/plantilla :: foot}"></footer>
 </body>
 </html>
