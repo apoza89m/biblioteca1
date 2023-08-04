@@ -73,7 +73,7 @@ public class LibroServiceImpl implements ILibroService {
 
 	@Override
 	public Page<Libro> pageFiltro(String genero, Pageable page) {
-		return libroRepository.findByGeneroPage(genero, page);
+		return libroRepository.findByGenero(genero, page);
 	}
 
 }

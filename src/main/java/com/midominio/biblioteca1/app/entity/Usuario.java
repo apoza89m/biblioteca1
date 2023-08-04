@@ -3,9 +3,11 @@ package com.midominio.biblioteca1.app.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -13,6 +15,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -45,10 +48,11 @@ public class Usuario implements Serializable{
 	public String getFoto(){return foto;}
 	public void setFoto(String foto){this.foto=foto;}
 	
-	//@ElementCollection()
-	//@CollectionTable(name = "prestamos")
-	//private Iterable<Libro> prestamos = new ArrayList<Libro>();
-
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<Libro> books = new ArrayList<>();
+	
+	//------------------------------------------------------------//
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
