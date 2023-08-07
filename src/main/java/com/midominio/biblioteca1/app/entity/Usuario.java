@@ -48,8 +48,8 @@ public class Usuario implements Serializable{
 	public String getFoto(){return foto;}
 	public void setFoto(String foto){this.foto=foto;}
 	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	private List<Libro> books = new ArrayList<>();
+	/*@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<Libro> books = new ArrayList<>();*/
 	
 	//------------------------------------------------------------//
 	

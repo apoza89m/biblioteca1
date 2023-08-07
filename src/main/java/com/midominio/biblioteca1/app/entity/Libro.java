@@ -41,10 +41,10 @@ public class Libro implements Serializable{
 	@NotNull	
 	private int numEjemplares;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	/*@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "usuario_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Usuario usuario;
+    private Usuario usuario;*/
 	
 	
 	//-------------------------------------------------------------//
